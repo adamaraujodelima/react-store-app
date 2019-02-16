@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default class ProductGridHome extends Component {
-    
+
     state = {
         products: []
     }
-    
+
     componentDidMount() {
         axios.get('http://localhost/api/products/all', {
             headers: {
                 Authorization: sessionStorage.getItem('myToken')
             }
+        }).then(res => {
+            const products = res.data;
+            this.setState({ products });
         })
-            .then(res => {
-                const products = res.data;
-                this.setState({ products });
-            })
     }
 
     render() {
@@ -28,16 +27,16 @@ export default class ProductGridHome extends Component {
                     <hr />
                 </div>
                 <div className="row small-up-2 large-up-4">
-                    {this.state.products.map(product => 
+                    {this.state.products.map(product =>
                         <div className="column image">
                             <Link to={`/product-details/${product.id}`}>
                                 <img className="thumbnail" src={`http://localhost/storage/${product.imagem}`} />
                             </Link>
-                            <h5>{ product.nome }</h5>
-                            <p>R$ { product.preco }</p>
+                            <h5>{product.nome}</h5>
+                            <p>R$ {product.preco}</p>
                             <Link to={`/product-details/${product.id}`} className="button expanded">Comprar</Link>
                         </div>
-                    )}                    
+                    )}
                 </div>
                 <hr />
             </div>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Input from '../../atoms/Input';
+import Button from '../../atoms/Button';
 
 export default class ProductComponet extends Component {
     state = {
@@ -42,9 +44,11 @@ export default class ProductComponet extends Component {
                             </div>
                             <div class="small-9 columns">
                                 <input type="text" id="middle-label" placeholder="One fish two fish" />
+                                <Input />
                             </div>
                         </div>
                         <a href="#" class="button large expanded">Buy Now</a>
+                        <Button>COMPRAR</Button>
                         <div class="small secondary expanded button-group">
                             <a class="button">Facebook</a>
                             <a class="button">Twitter</a>
