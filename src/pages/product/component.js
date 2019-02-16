@@ -1,30 +1,33 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class ProductComponet extends Component {
+    state = {
+        product_info: []
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost/api/products/info/2', {
+            headers: {
+                Authorization: sessionStorage.getItem('myToken')
+            }
+        })
+            .then(res => {
+                const product_info = res.data;
+                this.setState({ product_info });
+            })
+    }
+    
     render(){
         return(
             <div className="product-page-details" style={{ marginTop: 30 }}>
                 <div class="row">
                     <div class="medium-6 columns">
-                        <img class="thumbnail" src="https://placehold.it/650x350" />
-                        <div class="row small-up-4">
-                            <div class="column">
-                                <img class="thumbnail" src="https://placehold.it/250x200" />
-                            </div>
-                            <div class="column">
-                                <img class="thumbnail" src="https://placehold.it/250x200" />
-                            </div>
-                            <div class="column">
-                                <img class="thumbnail" src="https://placehold.it/250x200" />
-                            </div>
-                            <div class="column">
-                                <img class="thumbnail" src="https://placehold.it/250x200" />
-                            </div>
-                        </div>
+                        <img className="thumbnail" src={`http://localhost/storage/${this.state.product_info.imagem}`} />
                     </div>
                     <div class="medium-6 large-5 columns">
-                        <h3>My Awesome Product</h3>
-                        <p>Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in.</p>
+                        <h3>{this.state.product_info.nome} - R$ { this.state.product_info.preco }</h3>
+                        <p>{this.state.product_info.descricao}</p>
                         <label>Size
     <                       select>
                                 <option value="husker">Small</option>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProductGridHome from '../../molecules/ProductGridHome';
+import ProductGridHome from '../../organisms/ProductGridHome';
 
 export default class HomeComponent extends Component {
     render() {

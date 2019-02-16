@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SearchForm  from '../molecules/SearchForm';
+import MenuTopBar  from '../molecules/MenuTopBar';
 import { Link } from 'react-router-dom';
 
 export default class Header extends Component {
@@ -14,14 +15,7 @@ export default class Header extends Component {
                         </ul>
                     </div>
                     <div className="top-bar-right">
-                        <ul className="menu">
-                            <li><Link to="/checkout/checkout">Finalizar pedido</Link></li>
-                            <li><Link to="/checkout/cart">Meu carrinho</Link></li>
-                            <li><Link to="/account">Minha conta</Link></li>
-                            <li><Link to="/login">Login</Link></li>
-                            <li><Link to="/register">Nova conta</Link></li>
-                            <li><Link to="/logout">Sair</Link></li>
-                        </ul>
+                        <MenuTopBar />
                     </div>
                 </div>
                 <div className="row" style={{ marginTop: 30 }}>
